@@ -9,7 +9,7 @@ import {User} from '../../../_models/user';
     encapsulation: ViewEncapsulation.None
 })
 export class SimplyWhiteLayout extends RootLayout implements OnInit {
-    // TODO: Clean comments
+    //TODO: Clean comments
     // menuLinks = [
     //     {
     //         label: 'Dashboard',
@@ -34,7 +34,7 @@ export class SimplyWhiteLayout extends RootLayout implements OnInit {
     //     {
     //         label: 'Builder',
     //         routerLink: 'builder/simplywhite-builder',
-    //         iconType: 'fi',
+    //         iconType: 'fi', 
     //         iconName: 'cpu'
     //     },
     //     {

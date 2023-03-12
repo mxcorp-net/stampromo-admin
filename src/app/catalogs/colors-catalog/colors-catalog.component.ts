@@ -54,7 +54,7 @@ export class ColorsCatalogComponent implements OnInit {
     editColor(event: Color) {
         const initialState = {
             color: event,
-        }
+        };
         this.modalRef = this.modalService.show(ColorsEditModalComponent, {
             initialState
         });

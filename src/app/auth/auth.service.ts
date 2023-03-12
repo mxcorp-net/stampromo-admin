@@ -23,10 +23,10 @@ export class AuthService {
 
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.api}/auth/login`, {email: email, password: password})
-            .pipe(map(user => {
-                localStorage.setItem('stampromo.user', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                return user;
+            .pipe(map(response => {
+                localStorage.setItem('stampromo.user', JSON.stringify(response));
+                this.currentUserSubject.next(response);
+                return response;
             }));
     }
 

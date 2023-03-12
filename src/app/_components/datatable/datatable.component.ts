@@ -25,7 +25,7 @@ export class DatatableComponent implements OnInit {
 
     ngOnInit() {
         if (this.source.Service) {
-            this.fetch({});
+            this.fetch({words: ["*"]});
         }
     }
 
