@@ -6,7 +6,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <app-datatable [source]="dataSource" [settings]="dataSettings"></app-datatable>
+                <app-datatable [source]="dataSource" [settings]="dataSettings" (onRowClick)="editTag($event)" (onNewClick)="newTag($event)"></app-datatable>
             </div>
         </div>
     </div>

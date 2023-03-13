@@ -1,11 +1,11 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {DatatableColumn, DatatableSettings, DatatableSource} from "../../_components/datatable/datatable.component";
-import {HttpClient} from "@angular/common/http";
-import {ColorsService} from "../../services/colors.service";
+import {DatatableColumn, DatatableSettings, DatatableSource} from '../../_components/datatable/datatable.component';
+import {HttpClient} from '@angular/common/http';
+import {ColorsService} from '../../services/colors.service';
 import {MessageService} from '../../@pages/components/message/message.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import {Color} from "../../_models/color";
-import {ColorsEditModalComponent} from "./colors-edit-modal/colors-edit-modal.component";
+import {Color} from '../../_models/color';
+import {ColorsEditModalComponent} from './colors-edit-modal/colors-edit-modal.component';
 
 @Component({
     selector: 'app-colors-catalog',
@@ -29,7 +29,7 @@ export class ColorsCatalogComponent implements OnInit {
 
     modalRef: BsModalRef;
     constructor(private http: HttpClient, private _notification: MessageService
-    ,private modalService: BsModalService) {
+    , private modalService: BsModalService) {
         this.dataSource.Service = new ColorsService(http);
     }
 
@@ -39,11 +39,11 @@ export class ColorsCatalogComponent implements OnInit {
 
     createAlert() {
         this._notification.create(
-            "primary",
-            "Hello World",
+            'primary',
+            'Hello World',
             {
-                Position: "top",
-                Style: "bar",
+                Position: 'top',
+                Style: 'bar',
                 Duration: 0,
                 Title: 'test',
                 imgURL: 'test'
