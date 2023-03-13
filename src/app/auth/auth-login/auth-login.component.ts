@@ -9,6 +9,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class AuthLoginComponent implements OnInit {
     // TODO: corregir datalles visuales en formulario
+
     email: string;
     password: string;
     callback: string;

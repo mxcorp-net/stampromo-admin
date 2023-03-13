@@ -222,10 +222,10 @@
                 <!-- START User Info-->
                 <div class="pull-left p-r-10 fs-14 font-heading d-lg-inline-block d-none m-l-20">
                     <span class="semi-bold">
-                        {{user.firstName}}
+                        {{user.first_name}}
                     </span>
                     <span class="text-color">
-                        {{user.lastName}}
+                        {{user.last_name}}
                     </span>
                 </div>
                 <div class="dropdown pull-right d-lg-block d-none" dropdown>
@@ -239,7 +239,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown" *dropdownMenu role="menu">
                         <a href="#" class="dropdown-item">
-                            <span>Signed in as <br/><b>{{user.firstName + ' ' + user.lastName }}</b></span>
+                            <span>Signed in as <br/><b>{{user.first_name + ' ' + user.last_name }}</b></span>
                         </a>
                         <div class="dropdown-divider"></div>
                         <!--                        <a href="#" class="dropdown-item">Your Profile</a>-->
@@ -252,7 +252,7 @@
                         <a href="#" class="dropdown-item" (click)="logout()">Logout</a>
                         <div class="dropdown-divider"></div>
                         <span class="dropdown-item fs-12 hint-text">
-                            Last edited by {{user.firstName}}<br/>on Friday at 5:27PM
+                            Last edited by {{user.first_name}}<br/>on Friday at 5:27PM
                         </span>
                     </div>
                 </div>

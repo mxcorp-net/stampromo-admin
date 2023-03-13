@@ -4,8 +4,9 @@ export class User {
     id: number;
     email: string;
     password: string;
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     status: Status;
     token?: string;
+    user: User;
 }
