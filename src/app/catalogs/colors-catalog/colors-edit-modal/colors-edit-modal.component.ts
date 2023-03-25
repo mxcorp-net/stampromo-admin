@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {Color} from '../../../_models/color';
 import {HttpClient} from '@angular/common/http';
@@ -14,11 +14,13 @@ import {MessageService} from '../../../@pages/components/message/message.service
 export class ColorsEditModalComponent implements OnInit {
     color: Color = new Color();
     title: string;
-    colorServices: any;
-    form: any;
+    colorServices: ColorsService;
+    form: FormGroup;
     errorForm = false;
+    onSuccess: EventEmitter<any> = new EventEmitter();
 
-    constructor(public modalRef: BsModalRef, private http: HttpClient,
+    constructor(public modalRef: BsModalRef,
+                private http: HttpClient,
                 private _notification: MessageService) {
         this.colorServices = new ColorsService(http);
     }
@@ -35,8 +37,6 @@ export class ColorsEditModalComponent implements OnInit {
         } else {
             this.errorForm = true;
         }
-        // console.log(this.form.status)
-        //
     }
 
     createColor(event: MouseEvent) {
@@ -44,7 +44,6 @@ export class ColorsEditModalComponent implements OnInit {
         if (this.form.status === 'VALID') {
             this.colorServices.add(this.color).subscribe(
                 data => {
-                    // TODO close modal and update table
                     this._notification.create(
                         'primary',
                         'New Color ' + this.color.name + ' Added',
@@ -54,6 +53,7 @@ export class ColorsEditModalComponent implements OnInit {
                             Duration: 10000
                         }
                     );
+                    this.onSuccess.next(true);
                 }, error => {
                     // TODO send second notification
                     this.modalRef.hide();

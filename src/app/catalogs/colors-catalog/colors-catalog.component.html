@@ -6,7 +6,13 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <app-datatable [source]="dataSource" [settings]="dataSettings" (onRowClick)="editColor($event)" (onNewClick)="newColor($event)"></app-datatable>
+                <app-datatable #ColorsDataTable
+                               [source]="dataSource"
+                               [settings]="dataSettings"
+                               (onRowClick)="editColor($event)"
+                               (onNewClick)="newColor($event)">
+
+                </app-datatable>
             </div>
         </div>
     </div>

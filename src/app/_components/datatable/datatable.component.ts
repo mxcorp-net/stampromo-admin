@@ -12,7 +12,6 @@ export class DatatableComponent implements OnInit {
     @Input() settings: DatatableSettings = new DatatableSettings();
     @Input() title = '';
     @Input() isLoading = false;
-
     @Output() onRowClick = new EventEmitter<any>();
     @Output() onNewClick = new EventEmitter<any>();
 
@@ -25,7 +24,7 @@ export class DatatableComponent implements OnInit {
 
     ngOnInit() {
         if (this.source.Service) {
-            this.fetch({words: ["*"]});
+            this.fetch({words: ['*']});
         }
     }
 

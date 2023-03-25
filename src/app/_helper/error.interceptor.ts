@@ -16,7 +16,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             const errorMessage = exception.error.error || 'UPS! something went wrong';
             if (exception.status === 401) {
                 this.authservice.logout();
-                location.reload(true); // TODO: update method
+                location.reload(true);
             }
             if (exception.status === 500) {
                 this._notification.create(
