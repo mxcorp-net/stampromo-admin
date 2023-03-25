@@ -51,7 +51,7 @@ export class DatatableComponent implements OnInit {
 
     search(event: string) {
         this.searchValue = event || '';
-        this.fetch({Text: this.searchValue, Tags: this.searchValue.split(' ')});
+        this.fetch({Text: this.searchValue, words: this.searchValue.split(' ')});
     }
 
     rowClick(row: any) {
