@@ -66,6 +66,8 @@ export class ColorsCatalogComponent implements OnInit {
         this.modalRef = this.modalService.show(ColorsEditModalComponent);
         this.modalRef.content.onSuccess.pipe(take(1)).subscribe(value => {
             if (value) {
+                // TODO: validate functionality - after save a new color the datatable should reload data without search parameters
+                this.dataTable.searchValue = '';
                 this.dataTable.reloadTable();
             }
         });
