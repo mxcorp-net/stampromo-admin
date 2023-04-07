@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {Tag} from '../../../_models/tag';
 import {HttpClient} from '@angular/common/http';
@@ -18,6 +18,8 @@ export class TagEditModalComponent implements OnInit {
   tagServices: any;
   form: any;
   errorForm: any;
+  onSuccess: EventEmitter<any> = new EventEmitter();
+
   constructor(public modalRef: BsModalRef, private http: HttpClient,
               private _notification: MessageService) {
     this.tagServices = new TagsService(http);
@@ -62,6 +64,7 @@ export class TagEditModalComponent implements OnInit {
                   Duration: 10000
                 }
             );
+            this.onSuccess.next(true);
           }, error => {
             // TODO send second notification
             this.modalRef.hide();
