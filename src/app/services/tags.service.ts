@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Tag} from "../_models/tag";
-import {environment} from "../../environments/environment";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Tag} from '../_models/tag';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class TagsService {
     return this.http.post<Tag[]>(environment.api + '/tags/where', query);
   }
 
-  add(query: {}): Observable<any> {
-    return undefined;
+  add(query: {}): Observable<Tag> {
+    return this.http.post<Tag>(environment.api + '/tags/new', query);
   }
 
   delete(query: {}): Observable<any> {

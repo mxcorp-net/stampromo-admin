@@ -10,6 +10,7 @@ import {User} from '../../../_models/user';
 })
 export class SimplyWhiteLayout extends RootLayout implements OnInit {
     // TODO: Clean comments
+
     // menuLinks = [
     //     {
     //         label: 'Dashboard',
@@ -333,7 +334,7 @@ export class SimplyWhiteLayout extends RootLayout implements OnInit {
     dataBreadcrumb: any;
 
     ngOnInit() {
-        this.user = this.authService.currentUserValue;
+        this.user = this.authService.currentUserValue.user;
         this.changeLayout('menu-pin');
         // Will sidebar close on screens below 1024
         this.autoHideMenuPin();

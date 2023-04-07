@@ -24,6 +24,7 @@ import {pgSelectModule} from '../@pages/components/select/select.module';
 import {ColorsEditModalComponent} from './colors-catalog/colors-edit-modal/colors-edit-modal.component';
 import {FamiliesEditModalComponent} from './families-catalog/families-edit-modal/families-edit-modal.component';
 import {pgTabsModule} from '../@pages/components/tabs/tabs.module';
+import { TagEditModalComponent } from './tags-catalog/tag-edit-modal/tag-edit-modal.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import {pgTabsModule} from '../@pages/components/tabs/tabs.module';
         ProductsEditModalComponent,
         ColorsEditModalComponent,
         FamiliesEditModalComponent,
+        TagEditModalComponent,
     ],
     imports: [
         CommonModule,
@@ -58,7 +60,8 @@ import {pgTabsModule} from '../@pages/components/tabs/tabs.module';
     entryComponents: [
         ProductsEditModalComponent,
         ColorsEditModalComponent,
-        FamiliesEditModalComponent
+        FamiliesEditModalComponent,
+        TagEditModalComponent
     ]
 })
 export class CatalogsModule {

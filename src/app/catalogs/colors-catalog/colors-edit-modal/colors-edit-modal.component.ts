@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {BsModalRef} from "ngx-bootstrap/modal";
-import {Color} from "../../../_models/color";
-import {HttpClient} from "@angular/common/http";
-import {ColorsService} from "../../../services/colors.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {MessageService} from "../../../@pages/components/message/message.service";
+import {Component, EventEmitter, OnInit} from '@angular/core';
+import {BsModalRef} from 'ngx-bootstrap/modal';
+import {Color} from '../../../_models/color';
+import {HttpClient} from '@angular/common/http';
+import {ColorsService} from '../../../services/colors.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MessageService} from '../../../@pages/components/message/message.service';
 
 @Component({
     selector: 'app-colors-edit-modal',
@@ -14,11 +14,13 @@ import {MessageService} from "../../../@pages/components/message/message.service
 export class ColorsEditModalComponent implements OnInit {
     color: Color = new Color();
     title: string;
-    colorServices: any;
-    form: any;
-    errorForm: boolean = false;
+    colorServices: ColorsService;
+    form: FormGroup;
+    errorForm = false;
+    onSuccess: EventEmitter<any> = new EventEmitter();
 
-    constructor(public modalRef: BsModalRef, private http: HttpClient,
+    constructor(public modalRef: BsModalRef,
+                private http: HttpClient,
                 private _notification: MessageService) {
         this.colorServices = new ColorsService(http);
     }
@@ -28,32 +30,30 @@ export class ColorsEditModalComponent implements OnInit {
     }
 
     updateColor(color: Color) {
-        this.form = this.validateForm()
-        if (this.form.status === "VALID") {
-            this.colorServices.update(color)
+        this.form = this.validateForm();
+        if (this.form.status === 'VALID') {
+            this.colorServices.update(color);
             this.errorForm = false;
         } else {
             this.errorForm = true;
         }
-        //console.log(this.form.status)
-        //
     }
 
     createColor(event: MouseEvent) {
-        this.form = this.validateForm()
-        if (this.form.status === "VALID") {
+        this.form = this.validateForm();
+        if (this.form.status === 'VALID') {
             this.colorServices.add(this.color).subscribe(
                 data => {
-                    // TODO close modal and update table
                     this._notification.create(
-                        "primary",
-                        'New Color '+ this.color.name +' Added',
+                        'primary',
+                        'New Color ' + this.color.name + ' Added',
                         { // TODO give style to error notification
-                            Position: "top",
-                            Style: "bar",
+                            Position: 'top',
+                            Style: 'bar',
                             Duration: 10000
                         }
                     );
+                    this.onSuccess.next(true);
                 }, error => {
                     // TODO send second notification
                     this.modalRef.hide();
@@ -63,7 +63,6 @@ export class ColorsEditModalComponent implements OnInit {
         } else {
             this.errorForm = true;
         }
-
     }
 
     validateForm() {
@@ -74,7 +73,7 @@ export class ColorsEditModalComponent implements OnInit {
             hex: new FormControl(this.color.hex, [
                 Validators.required
             ])
-        })
+        });
     }
 
 }

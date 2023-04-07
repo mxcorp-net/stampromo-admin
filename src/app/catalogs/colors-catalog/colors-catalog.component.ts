@@ -1,11 +1,12 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
-import {DatatableColumn, DatatableSettings, DatatableSource} from "../../_components/datatable/datatable.component";
-import {HttpClient} from "@angular/common/http";
-import {ColorsService} from "../../services/colors.service";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {DatatableColumn, DatatableComponent, DatatableSettings, DatatableSource} from '../../_components/datatable/datatable.component';
+import {HttpClient} from '@angular/common/http';
+import {ColorsService} from '../../services/colors.service';
 import {MessageService} from '../../@pages/components/message/message.service';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import {Color} from "../../_models/color";
-import {ColorsEditModalComponent} from "./colors-edit-modal/colors-edit-modal.component";
+import {BsModalService, BsModalRef} from 'ngx-bootstrap/modal';
+import {Color} from '../../_models/color';
+import {ColorsEditModalComponent} from './colors-edit-modal/colors-edit-modal.component';
+import {take} from 'rxjs/operators';
 
 @Component({
     selector: 'app-colors-catalog',
@@ -13,7 +14,7 @@ import {ColorsEditModalComponent} from "./colors-edit-modal/colors-edit-modal.co
     styleUrls: ['./colors-catalog.component.scss']
 })
 export class ColorsCatalogComponent implements OnInit {
-
+    @ViewChild('ColorsDataTable', {static: false}) dataTable: DatatableComponent;
     // dataSource: DatatableSource = new DatatableSource();
     dataSource: DatatableSource = <DatatableSource>{
         Limit: 50,
@@ -28,8 +29,9 @@ export class ColorsCatalogComponent implements OnInit {
     };
 
     modalRef: BsModalRef;
+
     constructor(private http: HttpClient, private _notification: MessageService
-    ,private modalService: BsModalService) {
+        , private modalService: BsModalService) {
         this.dataSource.Service = new ColorsService(http);
     }
 
@@ -39,11 +41,11 @@ export class ColorsCatalogComponent implements OnInit {
 
     createAlert() {
         this._notification.create(
-            "primary",
-            "Hello World",
+            'primary',
+            'Hello World',
             {
-                Position: "top",
-                Style: "bar",
+                Position: 'top',
+                Style: 'bar',
                 Duration: 0,
                 Title: 'test',
                 imgURL: 'test'
@@ -54,7 +56,7 @@ export class ColorsCatalogComponent implements OnInit {
     editColor(event: Color) {
         const initialState = {
             color: event,
-        }
+        };
         this.modalRef = this.modalService.show(ColorsEditModalComponent, {
             initialState
         });
@@ -62,5 +64,12 @@ export class ColorsCatalogComponent implements OnInit {
 
     newColor(event: any) {
         this.modalRef = this.modalService.show(ColorsEditModalComponent);
+        this.modalRef.content.onSuccess.pipe(take(1)).subscribe(value => {
+            if (value) {
+                // TODO: validate functionality - after save a new color the datatable should reload data without search parameters
+                this.dataTable.searchValue = '';
+                this.dataTable.reloadTable();
+            }
+        });
     }
 }

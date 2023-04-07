@@ -32,7 +32,7 @@ import {
                 'open',
                 style({
                     height: '*',
-                    overflow: 'hidden'
+                    overflow: ''
                 })
             ),
             transition('close => open', animate('140ms ease-in')),

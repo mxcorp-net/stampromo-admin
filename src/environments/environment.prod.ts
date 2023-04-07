@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'https://stampromoservice.azurewebsites.net/api'
+  api: 'https://service.stampromo.net/api'
 };
