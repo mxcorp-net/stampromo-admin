@@ -55,13 +55,13 @@ build_image:
   artifacts:
     paths:
       - $CI_PROJECT_DIR/dist
-    cache:
-      key:
-        files:
-          - package-lock.json
-      paths:
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
           - node_modules
-      policy: pull
+    policy: pull
 
 push_project:
   image: ubuntu:18.04
