@@ -36,7 +36,7 @@ lint:
   image: node:19-alpine
   stage: test
   script:
-    - npm link @angular/cli@8.3.21
+    - npm link @angular/cli@8.3.21 --legacy-peer-deps
     - ng lint
   cache:
     key:
@@ -50,7 +50,7 @@ build_image:
   image: node:19-alpine
   stage: build
   script:
-    - npm link @angular/cli@8.3.21
+    - npm link @angular/cli@8.3.21 --legacy-peer-deps
     - npm run build --prod
   artifacts:
     paths:
