@@ -29,7 +29,7 @@ install_dependencies:
     key:
       files:
         - package-lock.json
-      paths:
+    paths:
         - node_modules
 
 lint:
@@ -42,9 +42,9 @@ lint:
     key:
       files:
         - package-lock.json
-      paths:
+    paths:
         - node_modules
-      policy: pull
+    policy: pull
 
 build_image:
   image: node:19-alpine
@@ -59,9 +59,9 @@ build_image:
       key:
         files:
           - package-lock.json
-        paths:
+      paths:
           - node_modules
-        policy: pull
+      policy: pull
 
 push_project:
   image: ubuntu:18.04
