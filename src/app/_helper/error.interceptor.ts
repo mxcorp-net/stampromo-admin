@@ -8,26 +8,31 @@ import {MessageService} from '../@pages/components/message/message.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private authservice: AuthService, private _notification: MessageService) {
+    errorOptions: {
+        Position: 'top',
+        Style: 'bar',
+        Duration: 5000
+    };
+
+    constructor(
+        private authService: AuthService,
+        private _notification: MessageService
+    ) {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(catchError((exception: HttpErrorResponse) => {
-            const errorMessage = exception.error.error || 'UPS! something went wrong';
+            const errorMessage = exception.error.error || 'UPS! something went wrong (interceptor)';
             if (exception.status === 401) {
-                this.authservice.logout();
-                location.reload(true);
+                this.authService.logout();
+                // TODO: add current URL to redirect back after login
+                location.href = '/auth/login';
             }
+            // if (exception.status === 400) {
+            //     this._notification.warning(errorMessage, this.errorOptions);
+            // }
             if (exception.status === 500) {
-                this._notification.create(
-                    'danger',
-                    errorMessage,
-                    { // TODO give style to error notification
-                        Position: 'top',
-                        Style: 'bar',
-                        Duration: 5000
-                    }
-                );
+                this._notification.error(errorMessage, this.errorOptions);
             }
             return throwError(errorMessage);
         }));

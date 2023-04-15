@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {DatatableColumn, DatatableComponent, DatatableSettings, DatatableSource} from '../../_components/datatable/datatable.component';
 import {ProductsService} from '../../services/products.service';
 import {HttpClient} from '@angular/common/http';
@@ -12,7 +12,9 @@ import {ProductsEditModalComponent} from './products-edit-modal/products-edit-mo
     styleUrls: ['./products-catalog.component.scss']
 })
 export class ProductsCatalogComponent implements OnInit {
-    // dataSource: DatatableSource = new DatatableSource();
+    @ViewChild('ProductsDataTable', {static: false}) dataTable: DatatableComponent;
+
+    productsService: ProductsService;
     dataSource: DatatableSource = <DatatableSource>{
         Limit: 50,
         Columns: [
@@ -30,7 +32,8 @@ export class ProductsCatalogComponent implements OnInit {
         private http: HttpClient,
         private modalService: BsModalService
     ) {
-        this.dataSource.Service = new ProductsService(http);
+        this.productsService = new ProductsService(http);
+        this.dataSource.Service = this.productsService;
     }
 
     ngOnInit() {

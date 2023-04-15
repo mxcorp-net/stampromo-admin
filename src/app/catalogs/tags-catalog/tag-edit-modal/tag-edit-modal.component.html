@@ -6,7 +6,6 @@
         <h5>
             {{title}}
         </h5>
-        <!--        <p class="p-b-10">We need payment information inorder to process your order</p>-->
     </div>
     <div class="modal-body">
         <form class="" role="form">
@@ -17,15 +16,18 @@
             <div class="form-group" pgFormGroupDefault *ngIf="errorForm">
                 <label>All field (*) are required</label>
             </div>
-            <div *ngIf="tag.id !== undefined; else newBlock">
-                <button class="btn btn-primary" (click)="updateTag(tag)">Update</button>
-                <button class="btn btn-warning ml-3" (click)="modalRef.hide()">Cancel</button>
-            </div>
-            <ng-template #newBlock>
-                <button class="btn btn-primary" (click)="createTag($event)">Create</button>
-                <button class="btn btn-warning ml-3" (click)="modalRef.hide()">Cancel</button>
-            </ng-template>
         </form>
+    </div>
+    <div class="modal-footer clearfix">
+        <button class="btn btn-danger" type="button"
+                *ngIf="tag.id > 0"
+                (click)="deleteTag(tag.id)">
+            <i class="pg-icon">trash</i> Delete
+        </button>
+        <button class="btn btn-primary" type="button" (click)="createTag($event)">
+            <i class="pg-icon">tick</i> Save
+        </button>
+        <button class="btn btn-warning" (click)="modalRef.hide()">Cancel</button>
     </div>
 </div>
 

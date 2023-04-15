@@ -2,7 +2,7 @@ import {Observable} from 'rxjs';
 
 export interface CoreService {
 
-    where(query: {}): Observable<any>;
+    where(query: {}): Observable<any>; // TODO: check exclude words
 
     add(query: {}): Observable<any>;
 

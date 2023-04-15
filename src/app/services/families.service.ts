@@ -19,16 +19,16 @@ export class FamiliesService implements CoreService {
     }
 
     saveFamily(family: Family): Observable<Family> {
-        return family.id === 0 ? this.add(family) : family.id > 0 ? this.update(family) : undefined;
+        return family.id > 0 ? this.update(family) : this.add(family);
     }
 
     saveAttribute(attribute: FamilyAttribute): Observable<FamilyAttribute> {
-        return attribute.id > 0 ? this.updateAttribute(attribute) : attribute.id === 0 ? this.addAttribute(attribute) : undefined;
+        return attribute.id > 0 ? this.updateAttribute(attribute) : this.addAttribute(attribute);
     }
 
     // TODO: check permissions
-    add(family: Family): Observable<Family> {
-        return this.http.post<Family>(environment.api + '/families/new', family);
+    add(newFamily: Family): Observable<Family> {
+        return this.http.post<Family>(environment.api + '/families/new', newFamily);
     }
 
     getAttributes(familyId: number): Observable<FamilyAttribute[]> {
@@ -55,6 +55,6 @@ export class FamiliesService implements CoreService {
     }
 
     updateAttribute(attribute: FamilyAttribute): Observable<FamilyAttribute> {
-        return undefined;
+        return this.http.put<FamilyAttribute>(environment.api + '/families/attributes/update', attribute);
     }
 }

@@ -10,7 +10,7 @@ export class MessageBaseService<ContainerClass extends MessageContainerComponent
   protected _container: ContainerClass;
 
   constructor(overlay: Overlay, containerClass: Type<ContainerClass>, private _idPrefix: string = '') {
-    //Wait till wrapper gets init parameters
+    // Wait till wrapper gets init parameters
     setTimeout(() => {
       this._container = overlay.create().attach(new ComponentPortal(containerClass)).instance;
     }, 100);

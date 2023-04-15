@@ -41,7 +41,7 @@ export class TagsCatalogComponent implements OnInit {
             tag: event,
         };
         this.modalRef = this.modalService.show(TagEditModalComponent, {
-            initialState
+            ignoreBackdropClick: true, initialState
         });
     }
 

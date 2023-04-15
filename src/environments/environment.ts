@@ -5,5 +5,10 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:7071/api'
+  api: 'http://127.0.0.1:8000/api'
 };
+
+// export const environment = {
+//   production: false,
+//   api: 'http://service.stampromo.net/api'
+// };

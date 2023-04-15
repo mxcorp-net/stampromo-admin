@@ -1,34 +1,35 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Tag} from '../_models/tag';
 import {environment} from '../../environments/environment';
+import {CoreService} from './core.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class TagsService {
+export class TagsService implements CoreService {
 
-  constructor(private http: HttpClient) {
-  }
+    constructor(private http: HttpClient) {
+    }
 
-  where(query: {}): Observable<Tag[]> {
-    return this.http.post<Tag[]>(environment.api + '/tags/where', query);
-  }
+    where(query: {}): Observable<Tag[]> {
+        return this.http.post<Tag[]>(environment.api + '/tags/where', query);
+    }
 
-  add(query: {}): Observable<Tag> {
-    return this.http.post<Tag>(environment.api + '/tags/new', query);
-  }
+    add(query: {}): Observable<Tag> {
+        return this.http.post<Tag>(environment.api + '/tags/new', query);
+    }
 
-  delete(query: {}): Observable<any> {
-    return undefined;
-  }
+    delete(query: {}): Observable<any> {
+        return undefined;
+    }
 
-  find(query: {}): Observable<any> {
-    return undefined;
-  }
+    find(query: {}): Observable<any> {
+        return undefined;
+    }
 
-  update(query: {}): Observable<any> {
-    return undefined;
-  }
+    update(query: {}): Observable<any> {
+        return undefined;
+    }
 }

@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Family} from '../../../_models/family';
 import {BsModalRef} from 'ngx-bootstrap';
 import {FamiliesService} from '../../../services/families.service';
-import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FamilyAttribute} from '../../../_models/family.attribute';
-import {MessageService} from '../../../@pages/components/message/message.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
     selector: 'app-families-edit-modal',
@@ -15,21 +15,23 @@ export class FamiliesEditModalComponent implements OnInit {
     family: Family = new Family();
     title: string;
     familyGroup: FormGroup;
+    familiesService: FamiliesService;
     attributeTypes = [
         {value: 'Text', label: ''},
         {value: 'Number', label: ''},
         {value: 'Date', label: ''},
         {value: 'File', label: ''},
-        {value: 'Image', label: '', disabled: false}
+        {value: 'Image', label: '', disabled: true}
     ];
-    selectedOption: any;
+    // TODO: create new events for emitt objects and control by parent
+    onSaveFamily: EventEmitter<Family> = new EventEmitter();
 
     constructor(
-        public bsModalRef: BsModalRef,
-        private familiesService: FamiliesService,
+        public modalRef: BsModalRef,
         private fb: FormBuilder,
-        private _notification: MessageService
+        private http: HttpClient
     ) {
+        this.familiesService = new FamiliesService(http);
         this.familyGroup = this.fb.group({
             familyName: ['', [Validators.required]],
             familyDescription: ['', [Validators.required]],
@@ -75,54 +77,22 @@ export class FamiliesEditModalComponent implements OnInit {
     }
 
     saveFamily(familyGroup: FormGroup): void {
-        // const family = new Family();
-
-        // TODO: assign data to new family
         this.family.name = this.familyGroup.controls['familyName'].value;
         this.family.description = this.familyGroup.controls['familyDescription'].value;
+        this.family.attributes = [];
 
-        this.familiesService.saveFamily(this.family).subscribe(
-            dataFamily => {
-                this.family.id = dataFamily.id;
+        for (const attGroup of this.familyGroup.get('familyAttributes')['controls']) {
+            let attribute: FamilyAttribute;
+            attribute = new FamilyAttribute();
 
-                for (const attGroup of this.familyGroup.get('familyAttributes')['controls']) {
-                    const attribute = new FamilyAttribute();
-                    // TODO: assign data to new attribute
-                    attribute.familyId = this.family.id;
-                    attribute.id = attGroup.controls['familyAttributeId'].value;
-                    attribute.name = attGroup.controls['familyAttribute'].value;
-                    attribute.type = attGroup.controls['familyAttributeType'].value;
+            attribute.family_id = this.family.id;
+            attribute.id = attGroup.controls['familyAttributeId'].value;
+            attribute.name = attGroup.controls['familyAttribute'].value;
+            attribute.type = attGroup.controls['familyAttributeType'].value;
 
-                    this.familiesService.saveAttribute(attribute).subscribe(
-                        dataAttribute => {
-                            console.log('attribute saved');
-                            // this._notification.create(
-                            //     'primary',
-                            //     'New Attribute ' + attribute.name + ' Added',
-                            //     { // TODO give style to error notification
-                            //         Position: 'top',
-                            //         Style: 'bar',
-                            //         Duration: 10000
-                            //     }
-                            // );
-                        }, error => {
-                            this.bsModalRef.hide();
-                        }
-                    );
-                }
+            this.family.attributes.push(attribute);
+        }
 
-                this._notification.create(
-                    'primary',
-                    'The Family ' + this.family.name + ' was saved successfully',
-                    { // TODO give style to error notification
-                        Position: 'top',
-                        Style: 'bar',
-                        Duration: 10000
-                    }
-                );
-            }, error => {
-                this.bsModalRef.hide();
-            }, () => this.bsModalRef.hide()
-        );
+        this.onSaveFamily.next(this.family);
     }
 }
