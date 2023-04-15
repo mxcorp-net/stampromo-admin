@@ -7,7 +7,7 @@ before_script:
 build:
   script:
     # Sync to FTP
-    - lftp -e "open ftp.stampromo.net; user $FTP_USERNAME $FTP_PASSWORD; mirror -X .* -X .*/ --reverse --verbose --delete local-folder/ destination-folder/; bye"
+    - lftp -e "open ftp.stampromo.net; user $FTP_USERNAME $FTP_PASSWORD; mirror -X .* -X .*/ --reverse --verbose --delete dist/ /; bye"
 
 
 #services:
