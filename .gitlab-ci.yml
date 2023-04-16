@@ -23,6 +23,8 @@ install_dependencies:
   stage: dependencies
   script:
     - npm install
+    - apk add --update python make g++\
+      && rm -rf /var/cache/apk/*
   only:
     - main
   cache:
@@ -64,12 +66,11 @@ build_image:
     policy: pull
 
 push_project:
-  image: ubuntu:18.04
+  image: node:19-alpine
   stage: publish
   only:
     - master
   before_script:
-    - apt-get update -qy
-    - apt-get install -y lftp
+    - apk add lftp
   script:
     - lftp -e "open ftp.stampromo.net; user $FTP_USERNAME $FTP_PASSWORD; mirror -X .* -X .*/ --reverse --verbose --delete dist/ /; bye"
