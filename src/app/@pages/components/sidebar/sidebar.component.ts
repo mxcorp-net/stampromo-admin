@@ -27,8 +27,8 @@ declare var pg: any;
 })
 export class SidebarComponent implements OnInit {
   subscriptions: Array<Subscription> = [];
-  pin: boolean = false;
-  drawer: boolean = false;
+  pin = false;
+  drawer = false;
   sidebar;
   timer;
   @HostBinding('style.transform')

@@ -304,6 +304,12 @@ export class SimplyWhiteLayout extends RootLayout implements OnInit {
                     iconName: 'box'
                 },
                 {
+                    label: 'Providers',
+                    routerLink: '/catalogs/providers',
+                    iconType: 'fi',
+                    iconName: 'box'
+                },
+                {
                     label: 'Families',
                     routerLink: '/catalogs/families',
                     iconType: 'fi',
