@@ -17,11 +17,11 @@ export const AppRoutes: Routes = [
             {
                 path: '',
                 component: DashboardComponent,
-                data: {layoutOption : {'Dashboard' : '/'}}
+                data: {layoutOption: {'Dashboard': '/'}}
             },
             {
                 path: 'catalogs',
-                loadChildren: './catalogs/catalogs.module#CatalogsModule'
+                loadChildren: () => import('./catalogs/catalogs.module').then(m => m.CatalogsModule)
             }
         ]
     },
@@ -31,7 +31,7 @@ export const AppRoutes: Routes = [
         children: [
             {
                 path: 'auth',
-                loadChildren: './auth/auth.module#AuthModule'
+                loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
             }
         ]
     },
