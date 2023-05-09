@@ -37,6 +37,7 @@ lint:
   stage: test
   script:
     - npm link @angular/cli@13.3.0
+    - npm install --save-dev @angular-devkit/build-angular
     - ng lint
   cache:
     key:
