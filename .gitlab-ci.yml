@@ -19,10 +19,11 @@ stages:
   - publish
 
 install_dependencies:
-  image: node:12-alpine
+  image: node:19-alpine
   stage: dependencies
   script:
     - npm install
+    - npm install --save-dev @angular-devkit/build-angular
   only:
     - master
   cache:
@@ -33,11 +34,10 @@ install_dependencies:
       - node_modules
 
 lint:
-  image: node:12-alpine
+  image: node:19-alpine
   stage: test
   script:
     - npm link @angular/cli@13.3.0
-    - npm install --save-dev @angular-devkit/build-angular
     - ng lint
   cache:
     key:
@@ -48,7 +48,7 @@ lint:
     policy: pull
 
 build_image:
-  image: node:12-alpine
+  image: node:19-alpine
   stage: build
   script:
     - npm link @angular/cli@13.3.0
@@ -65,7 +65,7 @@ build_image:
     policy: pull
 
 push_project:
-  image: node:12-alpine
+  image: node:19-alpine
   stage: publish
   only:
     - master
