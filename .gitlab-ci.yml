@@ -24,8 +24,6 @@ install_dependencies:
   script:
     - npm install
     - npm install --save-dev @angular-devkit/build-angular
-  only:
-    - master
   cache:
     key:
       files:
