@@ -11,10 +11,10 @@ cdkOverlayOrigin
 <span class="pg-calendar-range-picker-separator"> ~ </span>
 <ng-container *ngTemplateOutlet="inputRangePart; context: { part: _part.End }"></ng-container>
 </span>
-<i class="pg-calendar-picker-clear anticon anticon-cross-circle"
+<i class="pg-calendar-picker-clear pg-icon anticon anticon-cross-circle"
 *ngIf="showClearIcon"
 (click)="onTouched();
-_clearValue($event)">
+_clearValue($event)">close
 </i>
 <span class="pg-calendar-picker-icon"></span>
 </span>

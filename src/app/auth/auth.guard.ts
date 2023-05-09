@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authService.currentUserValue;
-        if (currentUser) {
+        if (currentUser) { // TODO: validate token vs api
             // logged in so return true
             return true;
         }

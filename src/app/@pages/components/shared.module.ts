@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SecondarySidebarComponent } from './secondary-sidebar/secondary-sidebar.component';
 
 import { QuickviewService } from './quickview/quickview.service';
-import { TypeaheadModule } from 'ngx-bootstrap';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { ParallaxDirective } from './parallax/parallax.directive';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';

@@ -10,7 +10,7 @@ import { SearchResult } from './search-result';
   styleUrls: ['./search-overlay.component.scss']
 })
 export class SearchOverlayComponent implements OnDestroy {
-  @ViewChild('searchField', { static: false }) searchField: ElementRef;
+  @ViewChild('searchField') searchField: ElementRef;
   toggleSubscription: Subscription;
   _isEnabled: boolean = false;
   isVisible: boolean = false;

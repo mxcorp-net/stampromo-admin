@@ -17,10 +17,10 @@ export class QuickviewComponent implements OnInit, OnDestroy {
   isOpen: boolean = false;
   noteList = [];
   noteDeleteList = [];
-  // Single
+  //Single
   selectedNote: Note;
   noteText = '';
-  // List for deleting or CRUD functions
+  //List for deleting or CRUD functions
   deleteNoteMode: boolean = false;
   isNoteOpen = false;
   userList = [];
@@ -28,7 +28,7 @@ export class QuickviewComponent implements OnInit, OnDestroy {
   userMessage;
   newMessage: chatMessage;
   editorModules = {
-    // https://github.com/KillerCodeMonkey/ngx-quill
+    //https://github.com/KillerCodeMonkey/ngx-quill
     toolbar: [[{ header: [1, 2, 3, 4, false] }], ['bold', 'italic', 'underline'], ['link', 'image']]
   };
   @ViewChild('chatHistoryWrapper', { static: true }) chatHistoryWrapper: ElementRef;
