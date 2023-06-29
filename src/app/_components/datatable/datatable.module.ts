@@ -5,7 +5,7 @@ import {FormsModule} from '@angular/forms';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SearchComponent } from './search/search.component';
 import {pgCardModule} from '../../@pages/components/card/card.module';
-import {BsDropdownModule} from 'ngx-bootstrap';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 
 @NgModule({
     declarations: [DatatableComponent, PaginationComponent, SearchComponent],
@@ -14,8 +14,9 @@ import {BsDropdownModule} from 'ngx-bootstrap';
         CommonModule,
         FormsModule,
         pgCardModule,
-        BsDropdownModule
-    ]
+        BsDropdownModule,
+    ],
+    providers: []
 })
 export class DatatableModule {
 }

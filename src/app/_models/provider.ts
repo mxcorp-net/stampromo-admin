@@ -1,4 +1,4 @@
-import {Status} from './status';
+import {Status} from './enums/status';
 
 export class Provider {
     id: number;

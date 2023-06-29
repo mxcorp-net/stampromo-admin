@@ -1,46 +1,61 @@
 import {Routes} from '@angular/router';
-import {ProductsCatalogComponent} from './products-catalog/products-catalog.component';
-import {CategoriesCatalogComponent} from './categories-catalog/categories-catalog.component';
-import {FamiliesCatalogComponent} from './families-catalog/families-catalog.component';
-import {ColorsCatalogComponent} from './colors-catalog/colors-catalog.component';
-import {ProvidersCatalogComponent} from './providers-catalog/providers-catalog.component';
-import {TagsCatalogComponent} from './tags-catalog/tags-catalog.component';
-import {ServicesCatalogComponent} from './services-catalog/services-catalog.component';
+import {ProductListComponent} from './products/product-list/product-list.component';
+import {ProductEditComponent} from './products/product-edit/product-edit.component';
+import {FamilyListComponent} from './families/family-list/family-list.component';
+import {FamilyEditComponent} from './families/family-edit/family-edit.component';
+import {ProductShowComponent} from './products/product-show/product-show.component';
 
-export const CatalogsRoute: Routes = [
+export const CatalogsRouting: Routes = [
     {
         path: 'products',
-        data: {layoutOption : {'Catalogs' : '#', 'Products': '#'}},
-        component: ProductsCatalogComponent
+        data: {
+            breadcrumb: [
+                {label: 'Catalogs', link: '#'},
+                {label: 'Products', link: '/catalogs/products'},
+            ]
+        },
+        component: ProductListComponent
     },
     {
-        path: 'providers',
-        data: {layoutOption : {'Catalogs' : '#', 'Providers': '#'}},
-        component: ProvidersCatalogComponent
+        path: 'products/:id',
+        data: {
+            breadcrumb: [
+                {label: 'Catalogs', link: '#'},
+                {label: 'Products', link: '/catalogs/products'},
+            ]
+        },
+        component: ProductShowComponent
     },
     {
-        path: 'services',
-        data: {layoutOption : {'Catalogs' : '#', 'Services': '#'}},
-        component: ServicesCatalogComponent
-    },
-    {
-        path: 'categories',
-        data: {layoutOption : {'Catalogs' : '#', 'Categories': '#'}},
-        component: CategoriesCatalogComponent
+        path: 'products/:id/edit',
+        data: {
+            breadcrumb: [
+                {label: 'Catalogs', link: '#'},
+                {label: 'Products', link: '/catalogs/products'},
+                {label: 'Edit', link: '#'},
+            ]
+        },
+        component: ProductEditComponent
     },
     {
         path: 'families',
-        data: {layoutOption : {'Catalogs' : '#', 'Families': '#'}},
-        component: FamiliesCatalogComponent
+        data: {
+            breadcrumb: [
+                {label: 'Catalogs', link: '#'},
+                {label: 'Families', link: '/catalogs/families'},
+            ]
+        },
+        component: FamilyListComponent
     },
     {
-        path: 'colors',
-        data: {layoutOption : {'Catalogs' : '#', 'Colors': '#'}},
-        component: ColorsCatalogComponent
+        path: 'families/:id',
+        data: {
+            breadcrumb: [
+                {label: 'Catalogs', link: '#'},
+                {label: 'Families', link: '/catalogs/families'},
+                {label: 'Edit', link: '#'},
+            ]
+        },
+        component: FamilyEditComponent
     },
-    {
-        path: 'tags',
-        data: {layoutOption : {'Catalogs' : '#', 'Tags': '#'}},
-        component: TagsCatalogComponent
-    }
 ];

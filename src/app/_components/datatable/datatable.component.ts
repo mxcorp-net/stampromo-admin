@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CoreService} from '../../services/core.service';
-import '../../_helper/string.extensions';
+import {CoreService} from '../../../services/core.service';
+import '../../../_helper/string.extensions';
 
 @Component({
     selector: 'app-datatable',
@@ -24,18 +24,18 @@ export class DatatableComponent implements OnInit {
 
     ngOnInit() {
         if (this.source.Service) {
-            this.fetch({words: ['*']});
+            this.fetch({text: '*'});
         }
     }
 
-    fetch(query: {}) {
+    fetch(params: {}) {
         this.isLoading = true;
         this.showMessage = false;
-        this.source.Service.where(query).subscribe(
+        this.source.Service.where(params).subscribe(
             data => {
                 this.source.Rows = data;
             }, error => {
-                this.errorMessage = error;
+                this.errorMessage = error.message;
                 this.isLoading = false;
                 this.showMessage = true;
             },
@@ -49,8 +49,8 @@ export class DatatableComponent implements OnInit {
     }
 
     search(event: string) {
-        this.searchValue = event || '';
-        this.fetch({Text: this.searchValue, words: this.searchValue.split(' ')});
+        this.searchValue = event || '*';
+        this.fetch({text: this.searchValue});
     }
 
     rowClick(row: any) {

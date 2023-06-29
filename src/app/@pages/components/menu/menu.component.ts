@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, Input, ViewEncapsulation, HostListener } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
+import {MenuItem} from '../../../../_helper/menu';
 
 @Component({
   selector: 'pg-menu-items',
@@ -19,7 +20,7 @@ import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScro
         'open',
         style({
           height: '*',
-          overflow: 'hidden'
+          overflow: 'show'
         })
       ),
       transition('close => open', animate('140ms ease-in')),
@@ -29,7 +30,7 @@ import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScro
   encapsulation: ViewEncapsulation.None
 })
 export class MenuComponent implements OnInit, AfterViewInit {
-  menuItems = [];
+  menuItems: MenuItem[] = [];
   currentItem = null;
   isPerfectScrollbarDisabled = false;
   public config: PerfectScrollbarConfigInterface = {};

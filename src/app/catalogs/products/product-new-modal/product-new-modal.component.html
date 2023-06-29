@@ -1,0 +1,82 @@
+<div class="modal-content">
+    <div class="modal-header clearfix text-left">
+        <button type="button" class="close" (click)="bsModalRef.hide()" aria-hidden="true">
+            <i class="pg-icon">close</i>
+        </button>
+        <h5>
+            {{title}}
+        </h5>
+    </div>
+    <div class="modal-body">
+        <form role="form">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group form-group-default required" pgFormGroupDefault>
+                        <label>Product Name</label>
+                        <input type="text" placeholder="Enter the product name" class="form-control"
+                               [(ngModel)]="product.name" [ngModelOptions]="{standalone: true}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group form-group-default required" pgFormGroupDefault>
+                        <label>Product Description</label>
+                        <input type="text" placeholder="Enter the product description" class="form-control"
+                               [(ngModel)]="product.description" [ngModelOptions]="{standalone: true}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-group-default form-group-default-select2 required">
+                        <label class="">Provider</label>
+                        <pg-select style="width: 100%;" [(ngModel)]="selectedProvider"
+                                   [PlaceHolder]="'Select Option'"
+                                   AllowClear ShowSearch [ngModelOptions]="{standalone: true}">
+                            <pg-option *ngFor="let provider of providers" [Label]="provider.name"
+                                       [Value]="provider.id.toString()">
+                            </pg-option>
+                        </pg-select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-default form-group-default-select2 required">
+                        <label class="">Family</label>
+                        <pg-select style="width: 100%;" [(ngModel)]="selectedFamily" [PlaceHolder]="'Select Option'"
+                                   AllowClear ShowSearch [ngModelOptions]="{standalone: true}">
+                            <pg-option *ngFor="let family of families" [Label]="family.name"
+                                       [Value]="family.id.toString()">
+                            </pg-option>
+                        </pg-select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 p-0">
+                <button aria-label="" class="btn btn-danger btn-icon-left m-r-5" type="button"
+                        (click)="bsModalRef.hide()">
+                    <i class="pg-icon">close</i>
+                    <span class="">Cancel</span>
+                </button>
+                <button aria-label="" class="btn btn-primary btn-icon-left m-r-5" type="button" [disabled]="formReady()"
+                        (click)="createProduct()">
+                    <i class="pg-icon">tick</i>
+                    <span class="">Create</span>
+                </button>
+                <button aria-label="" class="btn btn-primary btn-icon-left" type="button" [disabled]="formReady()"
+                        (click)="createProduct(true)">
+                    <i class="pg-icon">tick</i>
+                    <span class="">Create & Edit</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div [@fadeAnimation]="isLoading" class="card-progress"
+         [style.backgroundColor]="'rgba(255, 255, 255, 0.8)'" style="display: block;pointer-events: none">
+        <pg-progress type="circle" indeterminate="true"></pg-progress>
+    </div>
+</div>

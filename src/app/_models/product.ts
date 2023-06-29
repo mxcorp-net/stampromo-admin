@@ -1,14 +1,14 @@
-import {Status} from './status';
+import { Status } from "./enums/status";
 import {Family} from './family';
 
 export class Product {
     id: number;
     name: string;
     description: string;
-    providerId: number;
-    familyId: number;
+    provider_id: number;
+    family_id: number;
     status: Status;
 
-    imageDefault: string;
+    image_default: string;
     family: Family;
 }

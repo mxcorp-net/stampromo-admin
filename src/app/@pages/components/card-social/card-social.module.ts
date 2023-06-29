@@ -9,7 +9,7 @@ import { pgCardSocial } from './card-social.component';
   imports: [CommonModule]
 })
 export class pgCardSocialModule {
-  static forRoot(): ModuleWithProviders<any> {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: pgCardSocialModule
     };

@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "60df79be-2683-4e86-beef-0b0c97e1e049"
+    "analytics": "c8e7cd46-54af-4941-b717-6ba1473ceb9d"
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -51,7 +51,10 @@
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "allowedCommonJsDependencies": [
+              "ngx-quill"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,9 @@
+<div class="container-fluid p-l-25 p-r-25 sm-p-l-0 sm-p-r-0">
+    <app-datatable #ColorsDataTable
+                   [source]="dataSource"
+                   [settings]="dataSettings"
+                   [title]="'Families List'"
+                   (onRowClick)="editColor($event)"
+                   (onNewClick)="newColor($event)">
+    </app-datatable>
+</div>

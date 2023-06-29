@@ -31,6 +31,7 @@ export class RootLayout implements OnInit, OnDestroy {
   //Sub layout - eg: email
   _layoutOption: string;
   _subscriptions: Array<Subscription> = [];
+  protected _breadcrumb: any;
   _layout;
   @Input()
   public contentClass: string = '';
@@ -55,6 +56,7 @@ export class RootLayout implements OnInit, OnDestroy {
             //Custom Route Data here
             this._pageTitle = root.data['title'];
             this._layoutOption = root.data['layoutOption'];
+            this._breadcrumb = root.data['breadcrumb'];
             this._boxed = root.data['boxed'];
             break;
           } else {
