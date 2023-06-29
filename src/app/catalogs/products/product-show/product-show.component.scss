@@ -1,0 +1,66 @@
+.product-cost {
+  color: red;
+  font-weight: 700;
+  font-size: x-large;
+}
+
+.product-images {
+  text-align: center;
+
+  img {
+    margin: auto;
+    display: block;
+  }
+}
+
+.product-colors {
+  i {
+    border-color: white;
+    font-size: 20px;
+    cursor: pointer;
+
+    border-color: purple;
+    border-radius: 5px;
+
+    &.red {
+      color: red;
+    }
+
+    &.green {
+      color: green;
+    }
+
+    &.blue {
+      color: blue;
+    }
+
+    &:hover {
+      border-color: gold;
+      border-radius: 5px;
+    }
+  }
+}
+
+.product-rating {
+  margin-top: 5px;
+
+  i {
+    color: gold;
+    cursor: pointer;
+    font-size: 25px;
+
+    &:after {
+      content: 'star_outline';
+    }
+
+    &:hover:after {
+      content: 'star';
+    }
+  }
+}
+
+.product-attributes {
+  ul {
+    column-count: 2;
+  }
+}

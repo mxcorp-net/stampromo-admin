@@ -57,7 +57,7 @@
     }
   }
 }
-  // Color
+  // Colors
   input[type="radio"]:checked + label:before {
 	.success & {
 	  border-color: $color-success;

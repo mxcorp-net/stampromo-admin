@@ -1,0 +1,59 @@
+<div class="container-fluid p-l-25 p-r-25 sm-p-l-0 sm-p-r-0">
+    <div class="row">
+        <div class="col-md-6">
+            <pgcard [Controls]="false" [ProgressType]="'circle'" [ProgressColor]="'primary'">
+                <ng-template #CardTitle>Images</ng-template>
+                <div class="product-images">
+                    <img src="../../../assets/img/gallery/item-square.jpg">
+                </div>
+            </pgcard>
+        </div>
+        <div class="col-md-6">
+            <pgcard [Controls]="false" [ProgressType]="'circle'" [ProgressColor]="'primary'">
+                <ng-template #CardTitle>Info</ng-template>
+                <div>
+                    <h2 class="product-title">{{product.name}}</h2>
+                    <div class="product-cost">
+                        <span>${{selectedPrice}}</span>
+                    </div>
+                </div>
+                <div class="product-rating">
+                    <i class="pg-icon" data-value="1" (click)="selectRating($event)"></i>
+                    <i class="pg-icon" data-value="2" (click)="selectRating($event)"></i>
+                    <i class="pg-icon" data-value="3" (click)="selectRating($event)"></i>
+                    <i class="pg-icon" data-value="4" (click)="selectRating($event)"></i>
+                    <i class="pg-icon" data-value="5" (click)="selectRating($event)"></i>
+                </div>
+                <p>{{product.description}}</p>
+                <div class="product-attributes">
+                    <ul>
+                        <li>Attribute X</li>
+                        <li>Attribute X</li>
+                        <li>Attribute A</li>
+                        <li>Attribute A</li>
+                        <li>Attribute z</li>
+                        <li>Attribute z</li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Color</h5>
+                        <div class="product-colors">
+                            <button class="btn btn-sm btn-rounded">Small</button>
+                            <button class="btn btn-sm btn-rounded">Small</button>
+                            <i class="pg-icon green">circle_fill</i>
+                            <i class="pg-icon black">circle_fill</i>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Size</h5>
+                    </div>
+                </div>
+            </pgcard>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

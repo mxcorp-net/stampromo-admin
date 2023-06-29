@@ -1,8 +1,8 @@
-import {Status} from './status';
+import { Status } from "./enums/status";
 
 export class FamilyAttribute {
     id: number;
-    familyId: number;
+    family_id: number;
     name: string;
     status: Status;
     type: string;

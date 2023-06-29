@@ -1,0 +1,116 @@
+<div class="container-fluid p-l-25 p-r-25 sm-p-l-0 sm-p-r-0">
+    <pgcard [Controls]="false">
+        <ng-template #CardTitle>Product Details</ng-template>
+        <div class="row">
+            <div class="col-md-6">
+                <form id="horizontalForm" class="form-horizontal" role="form" autocomplete="off"
+                      #horizontalForm="ngForm">
+                    <div class="form-group row"
+                         [class.has-error]="HorizontalFormfname.invalid && (HorizontalFormfname.dirty || HorizontalFormfname.touched)">
+                        <label for="fname" class="col-md-3 control-label">Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="fname" placeholder="Product Name" name="fname"
+                                   [(ngModel)]="product.name" #HorizontalFormfname="ngModel" required>
+                            <div *ngIf="HorizontalFormfname.invalid && (HorizontalFormfname.dirty || HorizontalFormfname.touched)">
+                                <label *ngIf="HorizontalFormfname.errors.required" class="error">This field is
+                                    required.</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row"
+                         [class.has-error]="HorizontalFormfdescp.invalid && (HorizontalFormfdescp.dirty || HorizontalFormfdescp.touched)">
+                        <label for="fdescp" class="col-md-3 control-label">Description</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="fdescp" placeholder="Product Description"
+                                   name="fdescp"
+                                   [(ngModel)]="product.description" #HorizontalFormfdescp="ngModel" required>
+                            <div *ngIf="HorizontalFormfdescp.invalid && (HorizontalFormfdescp.dirty || HorizontalFormfdescp.touched)">
+                                <label *ngIf="HorizontalFormfdescp.errors.required" class="error">This field is
+                                    required.</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 control-label">Provider</label>
+                        <div class="col-md-9">
+                            <pg-select style="width: 100%;" [(ngModel)]="product.provider_id"
+                                       [PlaceHolder]="'Select a Provider'"
+                                       AllowClear ShowSearch [ngModelOptions]="{standalone: true}">
+                                <pg-option *ngFor="let provider of providers" [Label]="provider.name"
+                                           [Value]="provider.id">
+                                </pg-option>
+                            </pg-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 control-label">Family</label>
+                        <div class="col-md-9">
+                            <pg-select style="width: 100%;" [(ngModel)]="product.family_id"
+                                       [PlaceHolder]="'Select a Family'"
+                                       AllowClear ShowSearch [ngModelOptions]="{standalone: true}">
+                                <pg-option *ngFor="let family of families" [Label]="family.name"
+                                           [Value]="family.id">
+                                </pg-option>
+                            </pg-select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </pgcard>
+
+    <pgcard [Close]="false" [Maximize]="false" [Refresh]="false" [ProgressType]="'circle'" [ProgressColor]="'primary'"
+            [Loading]="isLoading" [Message]="errorMessageChildren" [ShowMessage]="showMessageChildren">
+        <ng-template #CardTitle>Product Children</ng-template>
+        <div class="table-responsive table-invoice">
+            <table class="table m-t-50">
+                <thead>
+                <tr>
+                    <th class="">Task Description</th>
+                    <th class="text-center">Rate</th>
+                    <th class="text-center">Hours</th>
+                    <th class="text-right">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="">
+                        <p class="text-black">Character Illustration</p>
+                        <p class="small hint-text">
+                            Character Design projects from the latest top online portfolios on Behance.
+                        </p>
+                    </td>
+                    <td class="text-center">$65.00</td>
+                    <td class="text-center">84</td>
+                    <td class="text-right">$5,376.00</td>
+                </tr>
+                <tr>
+                    <td class="">
+                        <p class="text-black">Cross Heart Charity Branding</p>
+                        <p class="small hint-text">
+                            Attempt to attach higher credibility to a new product by associating it with a well established company name
+                        </p>
+                    </td>
+                    <td class="text-center">$89.00</td>
+                    <td class="text-center">100</td>
+                    <td class="text-right">$8,900.00</td>
+                </tr>
+                <tr>
+                    <td class="">
+                        <p class="text-black">iOs App</p>
+                        <p class="small hint-text">
+                            A video game franchise Inspired primarily by a sketch of stylized wingless - Including Branding / Graphics / Motion Picture &amp; Videos
+                        </p>
+                    </td>
+                    <td class="text-center">$100.00</td>
+                    <td class="text-center">500</td>
+                    <td class="text-right">$50,000.00</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </pgcard>
+</div>

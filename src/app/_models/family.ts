@@ -1,4 +1,4 @@
-import {Status} from './status';
+import {Status} from './enums/status';
 import {FamilyAttribute} from './family.attribute';
 
 export class Family {

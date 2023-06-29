@@ -1,12 +1,10 @@
 import {Routes} from '@angular/router';
-// Layouts
 import {
     SimplyWhiteLayout,
     BlankSimplywhiteComponent
 } from './@pages/layouts';
-import {AuthGuard} from './auth/auth.guard';
 import {DashboardComponent} from './dashboard/dashboard.component';
-
+import {AuthGuard} from '../_helper/auth.guard';
 
 export const AppRoutes: Routes = [
     {
@@ -15,24 +13,20 @@ export const AppRoutes: Routes = [
         canActivate: [AuthGuard],
         children: [
             {
-                path: '',
-                component: DashboardComponent,
-                data: {layoutOption : {'Dashboard' : '/'}}
+                path: '', component: DashboardComponent, data: {
+                    breadcrumb: [
+                        {label: 'Dashboard', link: '#'},
+                    ]
+                }
             },
-            {
-                path: 'catalogs',
-                loadChildren: './catalogs/catalogs.module#CatalogsModule'
-            }
+            {path: 'catalogs', loadChildren: () => import('./catalogs/catalogs.module').then(m => m.CatalogsModule)}
         ]
     },
     {
         path: '',
         component: BlankSimplywhiteComponent,
         children: [
-            {
-                path: 'auth',
-                loadChildren: './auth/auth.module#AuthModule'
-            }
+            {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)}
         ]
     },
     {path: '**', redirectTo: ''}

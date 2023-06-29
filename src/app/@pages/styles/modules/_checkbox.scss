@@ -164,7 +164,7 @@ $white-check-icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAAQAgMAAA
     }
   }
 }
-// Color
+// Colors
 input[type="checkbox"]:checked + label, input[type="checkbox"]:indeterminate + label {
 	.success &:before {
 		border-color: $color-success;
